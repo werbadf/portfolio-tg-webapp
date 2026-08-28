@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevExpert | TMA Developer</title>
+    
+    <link rel="icon" type="image/png" href="icon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    
+    <!-- Подключаем Tailwind CSS через CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Подключаем иконки Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Базовые стили и фон */
+        body {
+            background-color: #0F172A;
+            color: #cbd5e1;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Эффект мерцающего курсора для текста */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #3b82f6;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Анимация плавающих элементов (3D эффект) */
+        .float-1 { animation: float1 5s ease-in-out infinite; }
+        .float-2 { animation: float2 6s ease-in-out infinite; }
+        .float-3 { animation: float3 4.5s ease-in-out infinite; }
+        
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(15px) translateX(-10px); }
+        }
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+
+        /* Классы для появления при скролле */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Стили для Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-500/30">
+
+    <!-- HEADER -->
+    <header class="fixed w-full top-0 z-50 bg-[#0F172A]/80 backdrop-blur-lg border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-blue-600 shadow-[0_0_15px_rgba(59,130,246,0.6)] flex items-center justify-center">
+                    <i data-lucide="terminal" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold text-white tracking-wide">Dev<span class="text-blue-400">Expert</span></span>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex gap-8 items-center">
+                <a href="#home" class="hover:text-blue-400 transition-colors">Главная</a>
+                <a href="#skills" class="hover:text-blue-400 transition-colors">Навыки</a>
+                <a href="#projects" class="hover:text-blue-400 transition-colors">Проекты</a>
+                <a href="#pricing" class="hover:text-blue-400 transition-colors">Цены</a>
+                <button class="px-5 py-2 rounded-full glass-card hover:bg-blue-600 hover:border-blue-500 transition-all text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                    Связаться
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="md:hidden p-2 text-white">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav (Скрыто по умолчанию) -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-[#0F172A] border-b border-white/10 px-4 py-4 flex flex-col gap-4">
+            <a href="#home" class="text-lg py-2 border-b border-white/5 mobile-link">Главная</a>
+            <a href="#skills" class="text-lg py-2 border-b border-white/5 mobile-link">Навыки</a>
+            <a href="#projects" class="text-lg py-2 border-b border-white/5 mobile-link">Проекты</a>
+            <a href="#pricing" class="text-lg py-2 border-b border-white/5 mobile-link">Цены</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="pt-32 pb-20 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="reveal">
+                <!-- Эффект печати -->
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 flex items-center">
+                    <span id="typewriter"></span><span class="cursor">&nbsp;</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl text-blue-400 font-medium mb-6">
+                    TMA & Telegram Developer
+                </h2>
+                <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
+                    Создаю современные Telegram Mini Apps с премиальным дизайном, высокой производительностью и надежным бекендом. Перенесу ваш бизнес прямо в мессенджер.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="px-8 py-4 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 transition-all shadow-[0_0_20px_rgba(59,130,246,0.4)] flex items-center gap-2">
+                        Заказать разработку <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                    <button class="px-8 py-4 rounded-xl glass-card text-white font-medium hover:bg-white/10 transition-all">
+                        Смотреть кейсы
+                    </button>
+                </div>
+            </div>
+
+            <!-- Иллюстрация на CSS -->
+            <div class="relative h-[400px] flex items-center justify-center reveal">
+                <!-- Главный элемент по центру -->
+                <div class="relative z-10 p-8 rounded-3xl bg-gradient-to-br from-blue-900/40 to-purple-900/40 border border-white/10 backdrop-blur-xl shadow-[0_0_40px_rgba(59,130,246,0.2)] float-1">
+                    <i data-lucide="laptop" class="text-blue-400 w-32 h-32 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]"></i>
+                </div>
+
+                <!-- Плавающие иконки -->
+                <div class="absolute top-10 left-10 p-4 glass-card rounded-2xl float-2 z-20">
+                    <i data-lucide="code-2" class="text-purple-400 w-8 h-8"></i>
+                </div>
+                <div class="absolute bottom-10 right-10 p-4 glass-card rounded-2xl float-3 z-20">
+                    <i data-lucide="database" class="text-blue-300 w-8 h-8"></i>
+                </div>
+                <div class="absolute top-20 right-5 p-4 glass-card rounded-2xl float-1 z-20" style="animation-delay: -2s;">
+                    <i data-lucide="send" class="text-sky-400 w-8 h-8"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="reveal text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Технологический <span class="text-blue-400">Стек</span></h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Карточка 1 -->
+                <div class="reveal glass-card p-8 rounded-2xl hover:bg-white/10 transition-colors group">
+                    <div class="w-14 h-14 rounded-xl bg-blue-900/50 flex items-center justify-center text-blue-400 mb-6 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all">
+                        <i data-lucide="smartphone"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">TMA Frontend</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">HTML, CSS, JS, Tailwind, TMA SDK. Адаптивный дизайн, который ощущается как нативное приложение в Telegram.</p>
+                </div>
+                
+                <!-- Карточка 2 -->
+                <div class="reveal glass-card p-8 rounded-2xl hover:bg-white/10 transition-colors group" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 rounded-xl bg-blue-900/50 flex items-center justify-center text-blue-400 mb-6 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all">
+                        <i data-lucide="database"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Robust Backend</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Python (aiogram 3.x), SQLite, FastAPI. Разработка высоконагруженных ботов, админ-панелей и API.</p>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="reveal glass-card p-8 rounded-2xl hover:bg-white/10 transition-colors group" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 rounded-xl bg-blue-900/50 flex items-center justify-center text-blue-400 mb-6 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Integrations</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Подключение платежных систем (Telegram Stars, TON, CryptoPay), аналитика и создание кастомных CRM.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12 text-center reveal">Избранные <span class="text-blue-400">Проекты</span></h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Проект 1 -->
+                <div class="reveal group p-1 rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-blue-500/50 transition-all duration-300">
+                    <div class="bg-[#151E32] rounded-xl p-6 h-full flex flex-col">
+                        <div class="h-40 bg-slate-800 rounded-lg mb-6 flex items-center justify-center border border-white/5 group-hover:border-blue-500/30 transition-colors">
+                            <i data-lucide="smartphone" class="text-slate-600 w-12 h-12 group-hover:text-blue-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Crypto Wallet TMA</h3>
+                        <p class="text-xs text-blue-400 mb-4 font-mono">HTML, Tailwind, TON Connect</p>
+                        <p class="text-slate-400 text-sm mb-6 flex-grow">Кошелек внутри Telegram с поддержкой оплаты в TON и премиальным темным дизайном.</p>
+                        <button class="w-full py-3 rounded-lg glass-card hover:bg-blue-600 text-white font-medium transition-all flex justify-center items-center gap-2">
+                            Открыть в Telegram <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Проект 2 -->
+                <div class="reveal group p-1 rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-blue-500/50 transition-all duration-300" style="transition-delay: 100ms;">
+                    <div class="bg-[#151E32] rounded-xl p-6 h-full flex flex-col">
+                        <div class="h-40 bg-slate-800 rounded-lg mb-6 flex items-center justify-center border border-white/5 group-hover:border-blue-500/30 transition-colors">
+                            <i data-lucide="smartphone" class="text-slate-600 w-12 h-12 group-hover:text-blue-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Store Bot Frontend</h3>
+                        <p class="text-xs text-blue-400 mb-4 font-mono">aiogram 3.x, SQLite, CSS</p>
+                        <p class="text-slate-400 text-sm mb-6 flex-grow">Магазин цифровых товаров. Связка мощного бекенда на Python с красивой Mini App витриной.</p>
+                        <button class="w-full py-3 rounded-lg glass-card hover:bg-blue-600 text-white font-medium transition-all flex justify-center items-center gap-2">
+                            Открыть в Telegram <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Проект 3 -->
+                <div class="reveal group p-1 rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-blue-500/50 transition-all duration-300" style="transition-delay: 200ms;">
+                    <div class="bg-[#151E32] rounded-xl p-6 h-full flex flex-col">
+                        <div class="h-40 bg-slate-800 rounded-lg mb-6 flex items-center justify-center border border-white/5 group-hover:border-blue-500/30 transition-colors">
+                            <i data-lucide="smartphone" class="text-slate-600 w-12 h-12 group-hover:text-blue-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">AI Assistant Mini App</h3>
+                        <p class="text-xs text-blue-400 mb-4 font-mono">Python, JS, Tailwind</p>
+                        <p class="text-slate-400 text-sm mb-6 flex-grow">Нейросеть-помощник с приятным интерфейсом чата (Glassmorphism) внутри Telegram.</p>
+                        <button class="w-full py-3 rounded-lg glass-card hover:bg-blue-600 text-white font-medium transition-all flex justify-center items-center gap-2">
+                            Открыть в Telegram <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION (Интерактивный калькулятор на чистом JS) -->
+    <section id="pricing" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="reveal text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Оценка <span class="text-blue-400">Стоимости</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Соберите нужный функционал, и калькулятор автоматически рассчитает примерную стоимость вашего Mini App.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-12 gap-8 reveal">
+                
+                <!-- Выбор тарифа -->
+                <div class="lg:col-span-8 flex flex-col gap-4">
+                    <h3 class="text-xl font-semibold text-white mb-2">1. Базовый пакет</h3>
+                    <div class="grid sm:grid-cols-3 gap-4" id="plan-container">
+                        <!-- Пакеты генерируются/управляются через JS. Для SEO оставляем HTML -->
+                        <div class="plan-card active-plan p-6 rounded-2xl cursor-pointer transition-all border glass-card bg-blue-600/10 border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.2)]" data-price="150" data-name="Basic Bot">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-lg font-bold text-white">Basic Bot</h4>
+                                <i data-lucide="check-circle-2" class="text-blue-400 check-icon"></i>
+                            </div>
+                            <div class="text-2xl font-bold text-blue-400 mb-2">$150</div>
+                            <p class="text-sm text-slate-400">Базовый бот для автоматизации процессов.</p>
+                        </div>
+                        
+                        <div class="plan-card p-6 rounded-2xl cursor-pointer transition-all border glass-card hover:bg-white/10" data-price="500" data-name="MVP Mini App">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-lg font-bold text-white">MVP Mini App</h4>
+                                <i data-lucide="check-circle-2" class="text-blue-400 check-icon hidden"></i>
+                            </div>
+                            <div class="text-2xl font-bold text-blue-400 mb-2">$500</div>
+                            <p class="text-sm text-slate-400">Полноценное TMA для старта бизнеса.</p>
+                        </div>
+
+                        <div class="plan-card p-6 rounded-2xl cursor-pointer transition-all border glass-card hover:bg-white/10" data-price="1200" data-name="Pro TMA">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-lg font-bold text-white">Pro TMA</h4>
+                                <i data-lucide="check-circle-2" class="text-blue-400 check-icon hidden"></i>
+                            </div>
+                            <div class="text-2xl font-bold text-blue-400 mb-2">$1200</div>
+                            <p class="text-sm text-slate-400">Сложное приложение со сложным бекендом.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-white mt-6 mb-2">2. Дополнительные опции</h3>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="addon-card p-4 flex items-center justify-between rounded-xl cursor-pointer transition-all border glass-card hover:bg-white/10" data-price="200" data-name="TON Payments">
+                            <span class="text-sm font-medium text-slate-200">Интеграция TON Payments</span>
+                            <span class="text-sm font-bold text-purple-400">+$200</span>
+                        </div>
+                        <div class="addon-card p-4 flex items-center justify-between rounded-xl cursor-pointer transition-all border glass-card hover:bg-white/10" data-price="300" data-name="Web-Админка">
+                            <span class="text-sm font-medium text-slate-200">Панель управления (Админка)</span>
+                            <span class="text-sm font-bold text-purple-400">+$300</span>
+                        </div>
+                        <div class="addon-card p-4 flex items-center justify-between rounded-xl cursor-pointer transition-all border glass-card hover:bg-white/10" data-price="100" data-name="Мультиязычность">
+                            <span class="text-sm font-medium text-slate-200">Мультиязычность</span>
+                            <span class="text-sm font-bold text-purple-400">+$100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Итоговая карточка -->
+                <div class="lg:col-span-4">
+                    <div class="sticky top-28 p-8 rounded-3xl bg-gradient-to-b from-blue-900/40 to-[#0F172A] border border-blue-500/30 shadow-[0_0_40px_rgba(59,130,246,0.15)] backdrop-blur-xl transition-transform" id="total-card">
+                        <h3 class="text-lg text-slate-300 mb-6">Итоговая оценка</h3>
+                        <div class="flex items-end gap-2 mb-8">
+                            <span class="text-5xl font-bold text-white" id="total-price">$150</span>
+                            <span class="text-slate-400 mb-1">/ проект</span>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-8 text-sm text-slate-300" id="summary-list">
+                            <li class="flex gap-2 items-center"><i data-lucide="check-circle-2" class="text-blue-400 w-4 h-4"></i> <span id="summary-plan">Basic Bot</span></li>
+                            <!-- Сюда JS будет добавлять аддоны -->
+                        </ul>
+                        
+                        <div class="border-t border-white/10 pt-4 mb-8 text-sm text-slate-400 space-y-3">
+                            <li class="flex gap-2 items-center"><i data-lucide="check-circle-2" class="text-blue-400 w-4 h-4"></i> Полный исходный код</li>
+                            <li class="flex gap-2 items-center"><i data-lucide="check-circle-2" class="text-blue-400 w-4 h-4"></i> Деплой на сервер</li>
+                        </div>
+
+                        <button class="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.4)] flex justify-center items-center gap-2">
+                            <i data-lucide="send" class="w-5 h-5"></i> Обсудить проект
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#0A0F1D] py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i data-lucide="terminal" class="text-blue-400"></i>
+                <span class="text-2xl font-bold text-white tracking-wide">Dev<span class="text-blue-400">Expert</span></span>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-400 hover:text-white transition-colors p-3 glass-card rounded-full hover:bg-white/10"><i data-lucide="github" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors p-3 glass-card rounded-full hover:bg-white/10"><i data-lucide="send" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors p-3 glass-card rounded-full hover:bg-white/10"><i data-lucide="mail" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+        <div class="text-center text-slate-500 mt-8 text-sm">
+            © 2026 DevExpert. Все права защищены. Дизайн оптимизирован для Telegram Mini Apps.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT: Логика и Анимации -->
+    <script>
+        // 1. Инициализация иконок Lucide
+        lucide.createIcons();
+
+        // 2. Мобильное меню
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons(); // Обновляем иконку
+        }
+        
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // 3. Эффект печатного текста (Typing Effect)
+        const textToType = "Привет, я DevExpert";
+        const typeTarget = document.getElementById('typewriter');
+        let typeIndex = 0;
+
+        function typeWriter() {
+            if (typeIndex < textToType.length) {
+                typeTarget.innerHTML += textToType.charAt(typeIndex);
+                typeIndex++;
+                setTimeout(typeWriter, 80); // скорость печати
+            }
+        }
+        // Запускаем печать через полсекунды после загрузки
+        setTimeout(typeWriter, 500);
+
+        // 4. Появление элементов при скролле (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Анимируем только один раз
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 5. Логика калькулятора услуг
+        const planCards = document.querySelectorAll('.plan-card');
+        const addonCards = document.querySelectorAll('.addon-card');
+        const totalPriceEl = document.getElementById('total-price');
+        const summaryPlanEl = document.getElementById('summary-plan');
+        const summaryList = document.getElementById('summary-list');
+        const totalCard = document.getElementById('total-card');
+
+        let currentBasePrice = 150;
+        let selectedAddons = [];
+
+        function calculateTotal() {
+            let addonsPrice = selectedAddons.reduce((sum, addon) => sum + parseInt(addon.dataset.price), 0);
+            let total = currentBasePrice + addonsPrice;
+            
+            // Анимация дергания цены
+            totalCard.style.transform = "scale(0.98)";
+            setTimeout(() => {
+                totalPriceEl.textContent = `$${total}`;
+                totalCard.style.transform = "scale(1)";
+            }, 100);
+
+            // Обновляем список выбранного
+            // Оставляем первый элемент (Базовый план), удаляем старые аддоны
+            while(summaryList.children.length > 1) {
+                summaryList.removeChild(summaryList.lastChild);
+            }
+
+            // Добавляем выбранные аддоны в список
+            selectedAddons.forEach(addon => {
+                const li = document.createElement('li');
+                li.className = "flex gap-2 items-center text-purple-300";
+                li.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4"></i> ${addon.dataset.name}`;
+                summaryList.appendChild(li);
+            });
+            lucide.createIcons(); // рендерим новые иконки галочек
+        }
+
+        // Клик по пакетам
+        planCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Сбрасываем стили у всех
+                planCards.forEach(c => {
+                    c.classList.remove('bg-blue-600/10', 'border-blue-500', 'shadow-[0_0_20px_rgba(59,130,246,0.2)]');
+                    c.querySelector('.check-icon').classList.add('hidden');
+                });
+
+                // Активируем выбранный
+                this.classList.add('bg-blue-600/10', 'border-blue-500', 'shadow-[0_0_20px_rgba(59,130,246,0.2)]');
+                this.querySelector('.check-icon').classList.remove('hidden');
+                
+                currentBasePrice = parseInt(this.dataset.price);
+                summaryPlanEl.textContent = this.dataset.name;
+                calculateTotal();
+            });
+        });
+
+        // Клик по аддонам
+        addonCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const isSelected = this.classList.contains('border-purple-500');
+                
+                if (isSelected) {
+                    this.classList.remove('bg-purple-600/20', 'border-purple-500');
+                    selectedAddons = selectedAddons.filter(a => a !== this);
+                } else {
+                    this.classList.add('bg-purple-600/20', 'border-purple-500');
+                    selectedAddons.push(this);
+                }
+                calculateTotal();
+            });
+        });
+    </script>
+</body>
+</html>
